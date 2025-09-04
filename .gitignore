@@ -1,0 +1,26 @@
+# Ignore executables
+*.exe
+*.out
+*.dll
+*.so
+
+# Ignore object files
+*.o
+*.obj
+
+# Ignore precompiled headers
+*.gch
+*.pch
+
+# Ignore debug/release folders
+/bin/
+/build/
+/debug/
+/release/
+/dist/
+
+# Ignore IDE settings
+.vscode/
+.idea/
+*.swp
+*.swo
