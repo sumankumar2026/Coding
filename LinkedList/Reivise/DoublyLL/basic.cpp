@@ -14,6 +14,18 @@ public:
         this->next = NULL;
         this->prev = NULL;
     }
+
+    ~Node()
+    {
+        int value = this->data;
+        if (this->next != NULL)
+        {
+            delete next;
+            this->next = NULL;
+        }
+        cout << "Memory is free with data is this: " << value << endl;
+    }
+
 };
 
 void print(Node *head)
@@ -89,6 +101,37 @@ void insertAtPosition(Node *&head, Node *&tail, int position, int d)
     nodeToInsert -> prev = temp;
 }
 
+void deleteNode(Node *&head, Node *&tail, int position)
+{
+    // first Position
+    if (position == 1)
+    {
+        Node *temp = head;
+        temp -> next -> prev = NULL;
+        head = head->next;
+        // memory free for firt position
+        temp->next = NULL;
+        delete temp;
+        return;
+    }
+    else{
+        Node *prev = NULL;
+    Node *curr = head;
+    int cnt = 1;
+    while (cnt < position)
+    {
+        prev = curr;
+        curr = curr->next;
+        cnt++;
+    }
+    curr -> prev = NULL;
+    prev -> next = curr -> next;
+    curr -> next = NULL;
+    delete curr;
+    tail = prev;
+    }
+}
+
 int main()
 {
     Node *node1 = new Node(10);
@@ -110,6 +153,9 @@ int main()
     print(head);
 
     insertAtPosition(head,tail,7,262);
+    print(head);
+    
+    deleteNode(head,tail,7);
     print(head);
 
     cout << getLenth(head) << endl;
